@@ -108,7 +108,7 @@ export default {
               fieldId: currentField.id,
               value
             });
-            console.log('Resposta da API [POST]:', responsePut);
+            console.log('Resposta da API [PUT]:', responsePut);
             localStorage.setItem(currentField.id, currentField.value);
           } else {
             // Se o campo já existe no localStorage e o valor é diferente, executa a requisição PUT

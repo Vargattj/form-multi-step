@@ -1,7 +1,8 @@
 <template>
   <main class="home-view">
     <ul class="form-list">
-      <li class="card" v-for="form in forms" :style="{ '--bg-color': form.style.bgColor, '--textColor': form.style.textColor, '--button-color': form.style.buttonColor }">
+      <li class="card" v-for="form in forms"
+        :style="{ '--bg-color': form.style.bgColor, '--textColor': form.style.textColor, '--button-color': form.style.buttonColor }">
         <h2>
           {{ form.title }}
         </h2>
@@ -10,7 +11,6 @@
     </ul>
   </main>
 </template>
-
 <script>
 
 import axios from "axios";
@@ -44,6 +44,7 @@ main.home-view {
   padding: 5%;
   background-color: rgba($color: #536dfe, $alpha: 0.8);
   height: 100vh;
+
   .form-list {
     padding: 0;
     border: 1;
@@ -52,7 +53,12 @@ main.home-view {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 16px;
-    .card{
+
+    @media only screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
       min-height: 140px;
       font-style: none;
       border-radius: 7px;
@@ -66,7 +72,12 @@ main.home-view {
       align-items: center;
       flex-direction: column;
       width: 460px;
-      margin: auto;      
+      margin: auto;
+
+      @media only screen and (max-width: 768px) {
+        width: 100%;
+      }
+
       .btn {
         background-color: var(--button-color);
         color: #fff;
@@ -77,6 +88,7 @@ main.home-view {
         margin-top: 10px;
         transition: .3s ease-in;
         border: 1px solid transparent;
+
         &:hover {
           border: 1px solid var(--button-color);
           color: var(--button-color);
@@ -85,5 +97,4 @@ main.home-view {
       }
     }
   }
-}
-</style>
+}</style>
