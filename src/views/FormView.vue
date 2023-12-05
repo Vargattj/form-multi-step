@@ -96,12 +96,19 @@ export default {
           const localStorageValue = localStorage.getItem(currentField.id);
           if (!localStorageValue || localStorageValue !== currentField.value) {
             // Se o campo não existe no localStorage executa a requisição POST
-            const responsePost = await axios.post(url, {
+
+            //Comentei para possibilitar os testes
+            // const responsePost = await axios.post(url, {
+            //   formId: this.formId,
+            //   fieldId: currentField.id,
+            //   value
+            // });
+            const responsePut = await axios.put(`${url}/${this.formId}`, {
               formId: this.formId,
               fieldId: currentField.id,
               value
             });
-            console.log('Resposta da API [POST]:', responsePost);
+            console.log('Resposta da API [POST]:', responsePut);
             localStorage.setItem(currentField.id, currentField.value);
           } else {
             // Se o campo já existe no localStorage e o valor é diferente, executa a requisição PUT
