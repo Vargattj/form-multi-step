@@ -11,7 +11,7 @@
           <CheckboxField :field="field" fieldTip='Selecione quantos itens desejar.'
             @selectedOptionsChange="receivedSelectedOptions" />
         </div>
-        <input v-else maxlength="130" :class="{ 'error': errorMessage }" :type="field.type" v-model=field.value
+        <input v-else minlength="2" maxlength="130" :class="{ 'error': errorMessage }" :type="field.type" v-model=field.value
           placeholder="Sua resposta...">
         <div class="error-message" v-if="errorMessage">
           {{ errorTextMessage }}
