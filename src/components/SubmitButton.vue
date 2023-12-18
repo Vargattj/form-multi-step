@@ -24,6 +24,7 @@
     background-color: var(--button-color);
 }
 </style>
+
 <script>
 export default {
     props: {

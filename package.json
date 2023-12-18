@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview --port 4173"
+    "preview": "vite preview --port 4173",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@vitejs/plugin-legacy": "^2.0.0",
     "@vitejs/plugin-vue2": "^1.1.2",
+    "cypress": "^12.17.4",
     "sass": "^1.69.5",
     "terser": "^5.14.2",
     "vite": "^3.0.2"
