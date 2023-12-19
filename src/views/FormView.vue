@@ -4,7 +4,7 @@
     <ProgressBar :totalItems=fields.length :currentIndex=currentStepIndex />
 
     <template v-if="fields && fields.length" v-for="(field, index) in fields">
-      <div v-if="field.type !== 'endScreen'" class="field-container" :class="{ 'active': index == currentStepIndex }">
+      <div v-if="field.type !== 'endScreen'" class="field-container" :class="{ 'active': index == currentStepIndex }" :data-index=currentStepIndex>
         <h2 class="form-title">{{ field.title }}</h2>
         <div>{{ field.description }}</div>
         <div v-if="field.type == 'checkbox'">

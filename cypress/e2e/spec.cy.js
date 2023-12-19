@@ -1,11 +1,14 @@
+/// <reference types="cypress" />
+
 describe('Testing form', () => {
+  const inputText = "Digitando..."
+  const inputEl = ".field-container.active > input";
+
   beforeEach(() => {
     cy.visit('http://localhost:5173/form/1')
   })
 
-  it('verify text field', () => {
-    const inputText = "Digitando..."
-    const inputEl = ".field-container.active > input";
+  it('Submiting Field', () => {
 
     // Verifica se a quantidade minima de caracteres está sendo respeitada
     cy.get(inputEl).should('have.attr', 'minlength').then((minLength) => {
@@ -22,14 +25,48 @@ describe('Testing form', () => {
     // Digita um valor no input
     cy.get(inputEl).type(`${inputText}{enter}`)
 
-    // Verifica se o valor foi digiado corretamente
+    // Verifica se o valor foi digitado corretamente
     cy.get(inputEl).should('have.value', inputText)
 
-    // Click no botão
+    const response = {
+      formId: "1",
+      fieldId: "4c0aaa104dbeeb4d331a6344",
+      value: "Digitando..."
+    }
+
+    // (Usando PUT pq a API não está mais aceitando requisições POST)
+    cy.intercept('PUT', 'https://65665153eb8bb4b70ef3297d.mockapi.io/api/respondents/1', { body: response }).as('putReq')
+
     cy.get('.field-container.active > .submit-button').click()
 
-    // Verifica se a questão foi alterada
-    cy.get(".field-container").first().should("not.have.class", "active")
+    // Verifica o body da requisição e se ela foi enviada com sucesso
+    cy.wait('@putReq').then((interception) => {
+      expect(interception.response.statusCode).to.equal(200);
+      expect(interception.response.body).to.deep.equal(response)
+    })
+
   })
 
+  it('Testing Navigation', () => {
+    // Volta para a questão anterior
+    cy.get('.btn-navigation').first().click()
+    // Verifica se a questão foi alterada
+    cy.get(".field-container").eq(1).should("not.have.class", "active")
+  })
+
+  it('Update Reponse', () => {
+    cy.intercept('PUT', 'https://65665153eb8bb4b70ef3297d.mockapi.io/api/respondents/1').as('putReq')
+
+    cy.get(inputEl).type(`Novo valor...{enter}`)
+
+    cy.get('.field-container.active > .submit-button').click()
+
+    cy.wait('@putReq').then((interception) => {
+      expect(interception.response.statusCode).to.equal(200);
+    })
+  })
+
+  it('Verify Email', () => {
+
+  })
 })
