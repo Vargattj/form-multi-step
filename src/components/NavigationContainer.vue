@@ -1,9 +1,9 @@
 <template  v-if="fields">
     <nav class="navigation-container"  v-if="index != fieldsLength - 1">
-        <button @click="back()" class="btn-navigation">
+        <button @click="back()" data-cy="back" class="btn-navigation">
             <font-awesome-icon class="icon" :icon="['fas', 'arrow-up']" />
         </button>
-        <Button @click="next()" class="btn-navigation">
+        <Button @click="next()" data-cy="next" class="btn-navigation">
             <font-awesome-icon class="icon" :icon="['fas', 'arrow-down']" />
         </Button>
     </nav>

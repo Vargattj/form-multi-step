@@ -4,7 +4,7 @@
             <font-awesome-icon :icon="['fas', 'list']" />
             {{ fieldTip }}
         </span>
-        <ul class="checkbox-options">
+        <ul class="checkbox-options" v-if="field && field.options">
             <li v-for="(option, index) in field.options"  :key="index"
                 :class="{ 'selected': selectedOptions.find((item) => item == option.value) }">
                 <label :for="option.id">

@@ -4,15 +4,13 @@
     <ProgressBar :totalItems=fields.length :currentIndex=currentStepIndex />
 
     <template v-if="fields && fields.length" v-for="(field, index) in fields">
-      <div v-if="field.type !== 'endScreen'" class="field-container" :class="{ 'active': index == currentStepIndex }" :data-index=currentStepIndex>
+      <div v-if="field.type !== 'endScreen'" class="field-container" data-cy="field"
+        :class="{ 'active': index == currentStepIndex }" :data-index=currentStepIndex>
         <h2 class="form-title">{{ field.title }}</h2>
         <div>{{ field.description }}</div>
-        <div v-if="field.type == 'checkbox'">
-          <CheckboxField :field="field" fieldTip='Selecione quantos itens desejar.'
-            @selectedOptionsChange="receivedSelectedOptions" />
-        </div>
-        <input v-else minlength="2" maxlength="130" :class="{ 'error': errorMessage }" :type="field.type" v-model=field.value
-          placeholder="Sua resposta...">
+        <CheckboxField v-if="field.type == 'checkbox'" :field="field" fieldTip='Selecione quantos itens desejar.'
+          @selectedOptionsChange="receivedSelectedOptions" />
+        <TextField v-else :field="field" :errorMessage="errorMessage" :minlength="2" :maxlength="130" />
         <div class="error-message" v-if="errorMessage">
           {{ errorTextMessage }}
         </div>
@@ -36,6 +34,7 @@ import NavigationContainer from "../components/NavigationContainer.vue";
 import ProgressBar from "../components/ProgressBar.vue";
 import CheckboxField from "../components/CheckboxField.vue";
 import SubmitButton from "../components/SubmitButton.vue";
+import TextField from "../components/TextField.vue";
 
 export default {
   data() {
@@ -72,7 +71,6 @@ export default {
       // Captura o campo que está sendo manipulado com base no index
       const currentField = this.fields[this.currentStepIndex];
       console.log("checkboxValues", this.checkboxValues)
-
       if (!currentField.value && currentField.type == "text") {
         this.errorMessage = true;
         return false;
@@ -97,7 +95,7 @@ export default {
           if (!localStorageValue || localStorageValue !== currentField.value) {
             // Se o campo não existe no localStorage executa a requisição POST
 
-            //Comentei para possibilitar os testes
+            // Comentei para possibilitar os testes
             // const responsePost = await axios.post(url, {
             //   formId: this.formId,
             //   fieldId: currentField.id,
@@ -108,7 +106,7 @@ export default {
               fieldId: currentField.id,
               value
             });
-            console.log('Resposta da API [PUT]:', responsePut);
+            // console.log('Resposta da API [PUT]:', responsePut);
             localStorage.setItem(currentField.id, currentField.value);
           } else {
             // Se o campo já existe no localStorage e o valor é diferente, executa a requisição PUT
@@ -145,7 +143,7 @@ export default {
       }
     },
   },
-  components: { NavigationContainer, ProgressBar, SubmitButton, CheckboxField }
+  components: { NavigationContainer, ProgressBar, SubmitButton, CheckboxField, TextField }
 }
 </script>
 

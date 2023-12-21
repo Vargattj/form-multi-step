@@ -1,5 +1,5 @@
 <template>
-    <button class="submit-button" @click.prevent.stop="next()">
+    <button data-cy="submit" class="submit-button" @click.prevent.stop="next()">
         <span v-if="index === totalItens - 2">
             <font-awesome-icon icon='check' />
             Enviar respostas
