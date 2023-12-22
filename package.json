@@ -5,7 +5,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
@@ -15,10 +17,20 @@
     "vue-router": "^3.5.4"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.6",
+    "@storybook/addon-interactions": "^7.6.6",
+    "@storybook/addon-links": "^7.6.6",
+    "@storybook/blocks": "^7.6.6",
+    "@storybook/test": "^7.6.6",
+    "@storybook/vue": "^7.6.6",
+    "@storybook/vue-vite": "^7.6.6",
     "@vitejs/plugin-legacy": "^2.0.0",
     "@vitejs/plugin-vue2": "^1.1.2",
     "cypress": "^12.17.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "sass": "^1.69.5",
+    "storybook": "^7.6.6",
     "terser": "^5.14.2",
     "vite": "^3.0.2"
   }
