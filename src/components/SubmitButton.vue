@@ -1,11 +1,12 @@
 <template>
-    <button data-cy="submit" class="submit-button" @click.prevent.stop="next()">
+    <button data-cy="submit" class="submit-button" @click.prevent.stop="next()"
+        :style="{ '--bg-color': formStyle.bgColor, '--textColor': formStyle.textColor, '--button-color': formStyle.buttonColor }">
         <span v-if="index === totalItens - 2">
             <font-awesome-icon icon='check' />
             Enviar respostas
         </span>
         <span v-else>
-            Responder
+            {{ btnText }}
         </span>
     </button>
 </template>
@@ -30,6 +31,8 @@ export default {
     props: {
         totalItens: Number,
         index: Number,
+        btnText: String,
+        formStyle: {},
     },
     methods: {
         next() {

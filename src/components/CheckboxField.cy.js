@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import CheckboxField from './CheckboxField.vue'
+import CheckboxField from './CheckboxField'
 
 describe('<CheckboxField />', () => {
   const checkBoxOption = '[data-cy="checkbox-option"]'
