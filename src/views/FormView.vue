@@ -14,7 +14,7 @@
         <div class="error-message" v-if="errorMessage">
           {{ errorTextMessage }}
         </div>
-        <SubmitButton @submitField="submitField" :formStyle=formStyle :totalItens=fields.length :index=currentStepIndex />
+        <SubmitButton text="Texto do botão" @submitField="submitField" :formStyle=formStyle :totalItens=fields.length :index=currentStepIndex />
       </div>
       <div v-else class="end-screen field-container" :class="{ 'active': index == currentStepIndex }">
         <font-awesome-icon class="icon" :icon="['fas', 'paper-plane']" />

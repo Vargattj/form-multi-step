@@ -29,7 +29,7 @@
 export default {
     props: {
         totalItens: Number,
-        index: Number
+        index: Number,
     },
     methods: {
         next() {

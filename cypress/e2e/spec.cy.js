@@ -11,7 +11,7 @@ describe('Testing form', () => {
     let prevInputVal;
 
     cy.get(currentField).find('[data-cy="text-input"]').type("Digitando...")
-    
+
     cy.get('[data-cy="next"]').click()
     cy.wait(200)
 
@@ -24,13 +24,13 @@ describe('Testing form', () => {
     cy.get('.field-container').eq(0).should("not.have.class", "active")
   })
 
-  it.skip('Update Response', () => {
+  it('Update Response', () => {
     cy.intercept('PUT', 'https://65665153eb8bb4b70ef3297d.mockapi.io/api/respondents/1').as('putReq')
     cy.get(inputEl).type(`Novo valor...{enter}`)
     cy.get('.field-container.active > .submit-button').click()
   })
 
-  it.skip("Submiting Form", () => {
+  it("Submiting Form", () => {
     cy.get('[data-cy="field"]').each((element, index) => {
       cy.get(element).find('input').then(($input) => {
         if ($input.attr('type') === 'email') {

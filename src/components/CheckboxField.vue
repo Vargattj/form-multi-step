@@ -6,7 +6,7 @@
         </span>
         <ul class="checkbox-options" v-if="field && field.options">
             <li v-for="(option, index) in field.options"  :key="index"
-                :class="{ 'selected': selectedOptions.find((item) => item == option.value) }">
+                :class="{ 'selected': selectedOptions.find((item) => item == option.value) }" data-cy="checkbox-option">
                 <label :for="option.id">
                     <input type="checkbox" v-model="selectedOptions" :value="option.value" :id="option.id">
                     {{ option.value }}
